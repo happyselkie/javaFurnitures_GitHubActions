@@ -16,6 +16,9 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '21'
-      - run: mvn install
-      - run: mvn clean package
-      - run: docker build -t meubles .
+      - name: installation de mvn
+        run: mvn install
+      - name: installation des dépendances
+        run: mvn clean package
+      - name: build de l'application
+        run: docker build -t meubles .
