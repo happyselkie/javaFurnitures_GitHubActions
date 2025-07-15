@@ -20,5 +20,3 @@ jobs:
         run: mvn install
       - name: installation des dépendances
         run: mvn clean package
-      - name: build de l'application
-        run: docker build -t meubles .
