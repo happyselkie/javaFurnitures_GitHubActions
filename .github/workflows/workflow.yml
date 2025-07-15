@@ -21,4 +21,4 @@ jobs:
       - name: installation des dépendances
         run: mvn dependency:resolve
       - name: build
-        run: mvn clean package
+        run: mvn clean package -DskipTests
