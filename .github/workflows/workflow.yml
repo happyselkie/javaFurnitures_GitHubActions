@@ -7,16 +7,18 @@ on:
   workflow_dispatch:
 
 jobs:
-  setup-java:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - name: Setup de java
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '21'
-      - name: installation de mvn
-        run: mvn install
+      - name: récupération du code
+        uses: actions/checkout@v4
       - name: installation des dépendances
+        run: mvn dependency:resolve
+      - name: build
         run: mvn clean package
