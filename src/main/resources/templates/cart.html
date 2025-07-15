@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+    <span th:replace="~{furniture-list :: bootstrapImport}"></span>
+</head>
+<body>
+    <span th:replace="~{furniture-list :: navbar}"></span>
+    <div class="container">
+    <table class="table" th:unless="${cartItems.isEmpty()}">
+        <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Quantité</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody th:each="c : ${cartItems}">
+        <td th:text="${c.getFurniture().getName()}"></td>
+        <td th:text="${c.getFurniture().getPrice()}"></td>
+        <td th:text="${c.getQuantity()}"></td>
+        <td>
+            <a th:href="@{/cartItem/delete/{id}(id=${c.getId()})}" class="btn btn-outline-danger">Supprimer</a>
+        </td>
+        </tbody>
+    </table>
+    <a th:href="@{/cartItem/clear}" class="btn btn-danger">Vider le panier</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add furniture</title>
+    <span th:replace="~{furniture-list :: bootstrapImport}"></span>
+</head>
+<body>
+    <span th:replace="~{furniture-list :: navbar}"></span>
+
+    <main class="container">
+        <h1>Formulaire</h1>
+        <form th:action="@{/addFurniture}" method="post" th:object="${furniture}">
+            <input th:field="*{id}" hidden>
+            <div class="mb-3">
+                <label for="name" class="form-label">Name :</label>
+                <input th:field="*{name}" type="text" class="form-control" id="name">
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description :</label>
+                <input th:field="*{description}" type="text" class="form-control" id="description">
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Price :</label>
+                <input th:field="*{price}" step="0.01" type="number" class="form-control" id="price">
+            </div>
+            <div class="mb-3">
+                <label for="stock" class="form-label">Stock :</label>
+                <input th:field="*{stock}" type="number" class="form-control" id="stock">
+            </div>
+            <button type="submit" class="btn btn-primary" th:text="${furniture.getId() != null ? 'Modifier' : 'Ajouter'}"></button>
+        </form>
+    </main>
+</body>
+</html>
