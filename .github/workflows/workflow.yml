@@ -19,4 +19,3 @@ jobs:
       - run: mvn install
       - run: mvn clean package
       - run: docker build -t meubles .
-      - run: docker run -p 8080:80 -d --name meubles meubles
