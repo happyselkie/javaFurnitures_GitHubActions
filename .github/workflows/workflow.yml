@@ -20,9 +20,6 @@ jobs:
       - name: récupération du code
         uses: actions/checkout@v4
 
-      - name: installation des dépendances
-        run: mvn dependency:resolve
-
       - name: Mise en cache des dépendances
         uses: actions/cache@v4
         with:
@@ -30,6 +27,9 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
+
+      - name: installation des dépendances
+        run: mvn dependency:resolve
 
       - name: build
         run: mvn clean package -DskipTests
