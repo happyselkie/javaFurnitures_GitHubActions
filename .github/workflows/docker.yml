@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: build docker image
-        run: docker build -t $USERNAME/actionimage .
+        run: docker build -t $USERNAME/meubles .
 
       - name: push sur dockerhub
-        run: docker push $USERNAME/actionimage
+        run: docker push $USERNAME/meubles
