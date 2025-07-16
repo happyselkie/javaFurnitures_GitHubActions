@@ -1,7 +1,7 @@
 name: Echo on fork
 
 on:
-  fork:
+  pull_request:
     branches:
       - main
 
