@@ -1,0 +1,21 @@
+name: Comment on issue
+
+on:
+  issues:
+    types: opened
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+
+    permissions:
+      issues: write
+
+    steps:
+      - name: Répondre à une issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_URL: ${{ github.event.issue.html_url}}
+          AUTHOR: ${{ github.event.issue.user.name}}
+          ISSUE_NAME: ${{ github.event.issue.title}}
+        run: gh issue comment $ISSUE_URL --body "Bonjour $AUTHOR, nous avons biens pris en compte votre problème du nom de":" $ISSUE_NAME"

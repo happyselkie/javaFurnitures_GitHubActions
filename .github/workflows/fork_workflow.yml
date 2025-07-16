@@ -1,0 +1,15 @@
+name: Echo on fork
+
+on:
+  fork:
+    branches:
+      - main
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: echo on fork project
+        run: echo "This project is forked"
+
