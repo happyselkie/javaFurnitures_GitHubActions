@@ -16,9 +16,27 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
+
       - name: récupération du code
         uses: actions/checkout@v4
+
       - name: installation des dépendances
         run: mvn dependency:resolve
+
+      - name: Mise en cache des dépendances
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
       - name: build
         run: mvn clean package -DskipTests
+
+      - name: Upload build
+        if: success() && github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: build_app
+          path: target/*.jar
